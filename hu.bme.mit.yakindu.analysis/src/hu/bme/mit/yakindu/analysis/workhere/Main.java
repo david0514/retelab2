@@ -55,11 +55,9 @@ public class Main {
 		}
 		
 		System.out.println("Transitions:");
-		System.out.println("States:");
 		for (String tr : transitions) {
 			System.out.println(tr);
 		}
-		
 		
 		System.out.println("Csapda allapotok:");
 		for (String st : states) {
