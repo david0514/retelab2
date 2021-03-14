@@ -29,7 +29,6 @@ public class RunStatechart {
 			}else if(str.equals("white")) {
 				s.raiseWhite();
 				s.runCycle();
-				
 			} else  if(str.equals("black")) {
 				s.raiseBlack();
 				s.runCycle();

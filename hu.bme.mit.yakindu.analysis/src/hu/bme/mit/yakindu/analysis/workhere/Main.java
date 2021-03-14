@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.yakindu.sct.model.sgraph.State;
 import org.yakindu.sct.model.sgraph.Transition;
 import org.yakindu.sct.model.sgraph.Statechart;
+import org.yakindu.sct.model.stext.stext.VariableDefinition;
+import org.yakindu.sct.model.stext.stext.EventDefinition;
 
 import hu.bme.mit.model2gml.Model2GML;
 import hu.bme.mit.yakindu.analysis.modelmanager.ModelManager;
@@ -30,10 +32,28 @@ public class Main {
 		Statechart s = (Statechart) root;
 		TreeIterator<EObject> iterator = s.eAllContents();
 		ArrayList<String> nemCsapda = new ArrayList<String>();
-		ArrayList<String> states = new ArrayList<String>();
-		ArrayList<String> transitions = new ArrayList<String>();
+		ArrayList<String> variableDefinitions = new ArrayList<String>();
+		ArrayList<String> eventDefinitions = new ArrayList<String>();
+		while (iterator.hasNext()) {
+			EObject content = iterator.next();
+			if(content instanceof VariableDefinition) {
+				VariableDefinition variableDefinition = (VariableDefinition) content;
+				variableDefinitions.add(variableDefinition.getName());
+			}else {
+				if(content instanceof EventDefinition) {
+					EventDefinition eventDefinition = (EventDefinition) content;
+					eventDefinitions.add(eventDefinition.getName());
+				}
+			}
+		}
+		System.out.println("public static void print(IExampleStatemachine s) {");
+		for (String st : variableDefinitions) {
+			System.out.println("System.out.println(\"" + st + " = \" + s.getSCInterface().get" + st.substring(0,1).toUpperCase() + st.substring(1) + "());");
+		}
+		System.out.println("}");
 		
 		
+		/*
 		while (iterator.hasNext()) {
 			EObject content = iterator.next();
 			if(content instanceof State) {
@@ -46,6 +66,8 @@ public class Main {
 					nemCsapda.add(transition.getSource().getName());
 					transitions.add(new String(transition.getSource().getName() + " -> " + transition.getTarget().getName()));
 					System.out.println();
+				}else {
+					System.out.println(content.toString());
 				}
 			}
 		}
@@ -86,7 +108,7 @@ public class Main {
 				j++;
 			}
 		}
-		
+		*/
 		
 		// Transforming the model into a graph representation
 		String content = model2gml.transform(root);
