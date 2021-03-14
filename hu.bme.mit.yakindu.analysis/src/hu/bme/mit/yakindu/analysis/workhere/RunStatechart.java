@@ -15,7 +15,6 @@ public class RunStatechart {
 		ExampleStatemachine s = new ExampleStatemachine();
 		s.setTimer(new TimerService());
 		RuntimeService.getInstance().registerStatemachine(s, 200);
-		
 		s.init();
 		s.enter();
 		s.runCycle();

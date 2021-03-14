@@ -1,7 +1,9 @@
 package hu.bme.mit.yakindu.analysis.workhere;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -13,6 +15,9 @@ import org.yakindu.sct.model.stext.stext.VariableDefinition;
 import org.yakindu.sct.model.stext.stext.EventDefinition;
 
 import hu.bme.mit.model2gml.Model2GML;
+import hu.bme.mit.yakindu.analysis.RuntimeService;
+import hu.bme.mit.yakindu.analysis.TimerService;
+import hu.bme.mit.yakindu.analysis.example.ExampleStatemachine;
 import hu.bme.mit.yakindu.analysis.modelmanager.ModelManager;
 
 public class Main {
@@ -46,69 +51,39 @@ public class Main {
 				}
 			}
 		}
+		
 		System.out.println("public static void print(IExampleStatemachine s) {");
 		for (String st : variableDefinitions) {
 			System.out.println("System.out.println(\"" + st + " = \" + s.getSCInterface().get" + st.substring(0,1).toUpperCase() + st.substring(1) + "());");
 		}
 		System.out.println("}");
 		
+		System.out.println();
 		
-		/*
-		while (iterator.hasNext()) {
-			EObject content = iterator.next();
-			if(content instanceof State) {
-				State state = (State) content;
-				states.add(state.getName());
-				
-			}else {
-				if(content instanceof Transition) {
-					Transition transition = (Transition) content;
-					nemCsapda.add(transition.getSource().getName());
-					transitions.add(new String(transition.getSource().getName() + " -> " + transition.getTarget().getName()));
-					System.out.println();
-				}else {
-					System.out.println(content.toString());
-				}
-			}
-		}
-		System.out.println("States:");
-		for (String st : states) {
-			System.out.println(st);
+		System.out.println("public static void main(String[] args) throws IOException {");
+		System.out.println("ExampleStatemachine s = new ExampleStatemachine();");
+		System.out.println("s.setTimer(new TimerService());");
+		System.out.println("RuntimeService.getInstance().registerStatemachine(s, 200);");
+		System.out.println("s.init();");
+		System.out.println("s.enter();");
+		System.out.println("s.runCycle();");
+		System.out.println("Scanner scanner = new Scanner(System.in);");
+		System.out.println("String str=scanner.nextLine();");
+		System.out.println("print(s);");
+		System.out.println("while(!str.equals(\"exit\")) {");
+		
+		for(String r: eventDefinitions) {
+			System.out.println("if(str.equals(\"" + r + "\")) {");
+			System.out.println("s.raise" + r.substring(0,1).toUpperCase() + r.substring(1) + "();");
+			System.out.println("s.runCycle();");
+			System.out.println("}");
 		}
 		
-		System.out.println("Transitions:");
-		for (String tr : transitions) {
-			System.out.println(tr);
-		}
-		
-		System.out.println("Csapda allapotok:");
-		for (String st : states) {
-			if(!nemCsapda.contains(st)) {
-				System.out.println(st);
-			}
-		}
-		
-	
-		int nevtelenAllapotokSzama=0;
-		for(String st : states) {
-			if(st=="" || st==null) {
-				nevtelenAllapotokSzama++;
-			}
-		}
-		
-		System.out.println("Talalt nevtelen allapotok: " + nevtelenAllapotokSzama + " db");
-		if(nevtelenAllapotokSzama > 0) {
-			System.out.println("Javasolt nevek:");
-			int j=1;
-			for(int i=1;i<=nevtelenAllapotokSzama;i++) {
-				while(states.contains("state_" + j)) {
-					j++;
-				}
-				System.out.println("state_" + j);
-				j++;
-			}
-		}
-		*/
+		System.out.println("str=scanner.nextLine();");
+		System.out.println("print(s);");
+		System.out.println("}");
+		System.out.println("System.exit(0);");
+		System.out.println("}");
 		
 		// Transforming the model into a graph representation
 		String content = model2gml.transform(root);
