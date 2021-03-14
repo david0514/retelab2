@@ -11,6 +11,42 @@ import hu.bme.mit.yakindu.analysis.example.IExampleStatemachine;
 
 public class RunStatechart {
 	
+	
+	public static void print(IExampleStatemachine s) {
+		System.out.println("elsoJataekosIdeje = " + s.getSCInterface().getElsoJataekosIdeje());
+		System.out.println("masoikJataekosIdeje = " + s.getSCInterface().getMasoikJataekosIdeje());
+		}
+
+		public static void main(String[] args) throws IOException {
+		ExampleStatemachine s = new ExampleStatemachine();
+		s.setTimer(new TimerService());
+		RuntimeService.getInstance().registerStatemachine(s, 200);
+		s.init();
+		s.enter();
+		s.runCycle();
+		Scanner scanner = new Scanner(System.in);
+		String str=scanner.nextLine();
+		print(s);
+		while(!str.equals("exit")) {
+		if(str.equals("start")) {
+		s.raiseStart();
+		s.runCycle();
+		}
+		if(str.equals("elsoJon")) {
+		s.raiseElsoJon();
+		s.runCycle();
+		}
+		if(str.equals("masodikJon")) {
+		s.raiseMasodikJon();
+		s.runCycle();
+		}
+		str=scanner.nextLine();
+		print(s);
+		}
+		System.exit(0);
+		}
+	
+	/*
 	public static void main(String[] args) throws IOException {
 		ExampleStatemachine s = new ExampleStatemachine();
 		s.setTimer(new TimerService());
@@ -43,4 +79,5 @@ public class RunStatechart {
 		System.out.println("W = " + s.getSCInterface().getWhiteTime());
 		System.out.println("B = " + s.getSCInterface().getBlackTime());
 	}
+	*/
 }

@@ -12,42 +12,42 @@ public class ExampleStatemachine implements IExampleStatemachine {
 			start = true;
 		}
 		
-		private boolean white;
+		private boolean elsoJon;
 		
-		public void raiseWhite() {
-			white = true;
+		public void raiseElsoJon() {
+			elsoJon = true;
 		}
 		
-		private boolean black;
+		private boolean masodikJon;
 		
-		public void raiseBlack() {
-			black = true;
+		public void raiseMasodikJon() {
+			masodikJon = true;
 		}
 		
-		private long whiteTime;
+		private long elsoJataekosIdeje;
 		
-		public long getWhiteTime() {
-			return whiteTime;
+		public long getElsoJataekosIdeje() {
+			return elsoJataekosIdeje;
 		}
 		
-		public void setWhiteTime(long value) {
-			this.whiteTime = value;
+		public void setElsoJataekosIdeje(long value) {
+			this.elsoJataekosIdeje = value;
 		}
 		
-		private long blackTime;
+		private long masoikJataekosIdeje;
 		
-		public long getBlackTime() {
-			return blackTime;
+		public long getMasoikJataekosIdeje() {
+			return masoikJataekosIdeje;
 		}
 		
-		public void setBlackTime(long value) {
-			this.blackTime = value;
+		public void setMasoikJataekosIdeje(long value) {
+			this.masoikJataekosIdeje = value;
 		}
 		
 		protected void clearEvents() {
 			start = false;
-			white = false;
-			black = false;
+			elsoJon = false;
+			masodikJon = false;
 		}
 	}
 	
@@ -57,8 +57,8 @@ public class ExampleStatemachine implements IExampleStatemachine {
 	
 	public enum State {
 		main_region_Init,
-		main_region_Black,
-		main_region_White,
+		main_region_masodikJatekos,
+		main_region_elsoJatekos,
 		$NullState$
 	};
 	
@@ -84,9 +84,9 @@ public class ExampleStatemachine implements IExampleStatemachine {
 		}
 		clearEvents();
 		clearOutEvents();
-		sCInterface.setWhiteTime(60);
+		sCInterface.setElsoJataekosIdeje(60);
 		
-		sCInterface.setBlackTime(60);
+		sCInterface.setMasoikJataekosIdeje(60);
 	}
 	
 	public void enter() {
@@ -111,11 +111,11 @@ public class ExampleStatemachine implements IExampleStatemachine {
 			case main_region_Init:
 				main_region_Init_react(true);
 				break;
-			case main_region_Black:
-				main_region_Black_react(true);
+			case main_region_masodikJatekos:
+				main_region_masodikJatekos_react(true);
 				break;
-			case main_region_White:
-				main_region_White_react(true);
+			case main_region_elsoJatekos:
+				main_region_elsoJatekos_react(true);
 				break;
 			default:
 				// $NullState$
@@ -166,10 +166,10 @@ public class ExampleStatemachine implements IExampleStatemachine {
 		switch (state) {
 		case main_region_Init:
 			return stateVector[0] == State.main_region_Init;
-		case main_region_Black:
-			return stateVector[0] == State.main_region_Black;
-		case main_region_White:
-			return stateVector[0] == State.main_region_White;
+		case main_region_masodikJatekos:
+			return stateVector[0] == State.main_region_masodikJatekos;
+		case main_region_elsoJatekos:
+			return stateVector[0] == State.main_region_elsoJatekos;
 		default:
 			return false;
 		}
@@ -207,47 +207,47 @@ public class ExampleStatemachine implements IExampleStatemachine {
 		sCInterface.raiseStart();
 	}
 	
-	public void raiseWhite() {
-		sCInterface.raiseWhite();
+	public void raiseElsoJon() {
+		sCInterface.raiseElsoJon();
 	}
 	
-	public void raiseBlack() {
-		sCInterface.raiseBlack();
+	public void raiseMasodikJon() {
+		sCInterface.raiseMasodikJon();
 	}
 	
-	public long getWhiteTime() {
-		return sCInterface.getWhiteTime();
+	public long getElsoJataekosIdeje() {
+		return sCInterface.getElsoJataekosIdeje();
 	}
 	
-	public void setWhiteTime(long value) {
-		sCInterface.setWhiteTime(value);
+	public void setElsoJataekosIdeje(long value) {
+		sCInterface.setElsoJataekosIdeje(value);
 	}
 	
-	public long getBlackTime() {
-		return sCInterface.getBlackTime();
+	public long getMasoikJataekosIdeje() {
+		return sCInterface.getMasoikJataekosIdeje();
 	}
 	
-	public void setBlackTime(long value) {
-		sCInterface.setBlackTime(value);
+	public void setMasoikJataekosIdeje(long value) {
+		sCInterface.setMasoikJataekosIdeje(value);
 	}
 	
-	/* Entry action for state 'Black'. */
-	private void entryAction_main_region_Black() {
+	/* Entry action for state 'masodikJatekos'. */
+	private void entryAction_main_region_masodikJatekos() {
 		timer.setTimer(this, 0, (1 * 1000), false);
 	}
 	
-	/* Entry action for state 'White'. */
-	private void entryAction_main_region_White() {
+	/* Entry action for state 'elsoJatekos'. */
+	private void entryAction_main_region_elsoJatekos() {
 		timer.setTimer(this, 1, (1 * 1000), false);
 	}
 	
-	/* Exit action for state 'Black'. */
-	private void exitAction_main_region_Black() {
+	/* Exit action for state 'masodikJatekos'. */
+	private void exitAction_main_region_masodikJatekos() {
 		timer.unsetTimer(this, 0);
 	}
 	
-	/* Exit action for state 'White'. */
-	private void exitAction_main_region_White() {
+	/* Exit action for state 'elsoJatekos'. */
+	private void exitAction_main_region_elsoJatekos() {
 		timer.unsetTimer(this, 1);
 	}
 	
@@ -257,18 +257,18 @@ public class ExampleStatemachine implements IExampleStatemachine {
 		stateVector[0] = State.main_region_Init;
 	}
 	
-	/* 'default' enter sequence for state Black */
-	private void enterSequence_main_region_Black_default() {
-		entryAction_main_region_Black();
+	/* 'default' enter sequence for state masodikJatekos */
+	private void enterSequence_main_region_masodikJatekos_default() {
+		entryAction_main_region_masodikJatekos();
 		nextStateIndex = 0;
-		stateVector[0] = State.main_region_Black;
+		stateVector[0] = State.main_region_masodikJatekos;
 	}
 	
-	/* 'default' enter sequence for state White */
-	private void enterSequence_main_region_White_default() {
-		entryAction_main_region_White();
+	/* 'default' enter sequence for state elsoJatekos */
+	private void enterSequence_main_region_elsoJatekos_default() {
+		entryAction_main_region_elsoJatekos();
 		nextStateIndex = 0;
-		stateVector[0] = State.main_region_White;
+		stateVector[0] = State.main_region_elsoJatekos;
 	}
 	
 	/* 'default' enter sequence for region main region */
@@ -282,20 +282,20 @@ public class ExampleStatemachine implements IExampleStatemachine {
 		stateVector[0] = State.$NullState$;
 	}
 	
-	/* Default exit sequence for state Black */
-	private void exitSequence_main_region_Black() {
+	/* Default exit sequence for state masodikJatekos */
+	private void exitSequence_main_region_masodikJatekos() {
 		nextStateIndex = 0;
 		stateVector[0] = State.$NullState$;
 		
-		exitAction_main_region_Black();
+		exitAction_main_region_masodikJatekos();
 	}
 	
-	/* Default exit sequence for state White */
-	private void exitSequence_main_region_White() {
+	/* Default exit sequence for state elsoJatekos */
+	private void exitSequence_main_region_elsoJatekos() {
 		nextStateIndex = 0;
 		stateVector[0] = State.$NullState$;
 		
-		exitAction_main_region_White();
+		exitAction_main_region_elsoJatekos();
 	}
 	
 	/* Default exit sequence for region main region */
@@ -304,11 +304,11 @@ public class ExampleStatemachine implements IExampleStatemachine {
 		case main_region_Init:
 			exitSequence_main_region_Init();
 			break;
-		case main_region_Black:
-			exitSequence_main_region_Black();
+		case main_region_masodikJatekos:
+			exitSequence_main_region_masodikJatekos();
 			break;
-		case main_region_White:
-			exitSequence_main_region_White();
+		case main_region_elsoJatekos:
+			exitSequence_main_region_elsoJatekos();
 			break;
 		default:
 			break;
@@ -331,7 +331,7 @@ public class ExampleStatemachine implements IExampleStatemachine {
 			if (react()==false) {
 				if (sCInterface.start) {
 					exitSequence_main_region_Init();
-					enterSequence_main_region_White_default();
+					enterSequence_main_region_elsoJatekos_default();
 				} else {
 					did_transition = false;
 				}
@@ -340,20 +340,20 @@ public class ExampleStatemachine implements IExampleStatemachine {
 		return did_transition;
 	}
 	
-	private boolean main_region_Black_react(boolean try_transition) {
+	private boolean main_region_masodikJatekos_react(boolean try_transition) {
 		boolean did_transition = try_transition;
 		
 		if (try_transition) {
 			if (react()==false) {
-				if (sCInterface.black) {
-					exitSequence_main_region_Black();
-					enterSequence_main_region_White_default();
+				if (sCInterface.elsoJon) {
+					exitSequence_main_region_masodikJatekos();
+					enterSequence_main_region_elsoJatekos_default();
 				} else {
 					if (timeEvents[0]) {
-						exitSequence_main_region_Black();
-						sCInterface.setBlackTime(sCInterface.getBlackTime() - 1);
+						exitSequence_main_region_masodikJatekos();
+						sCInterface.setMasoikJataekosIdeje(sCInterface.getMasoikJataekosIdeje() - 1);
 						
-						enterSequence_main_region_Black_default();
+						enterSequence_main_region_masodikJatekos_default();
 					} else {
 						did_transition = false;
 					}
@@ -363,20 +363,20 @@ public class ExampleStatemachine implements IExampleStatemachine {
 		return did_transition;
 	}
 	
-	private boolean main_region_White_react(boolean try_transition) {
+	private boolean main_region_elsoJatekos_react(boolean try_transition) {
 		boolean did_transition = try_transition;
 		
 		if (try_transition) {
 			if (react()==false) {
-				if (sCInterface.white) {
-					exitSequence_main_region_White();
-					enterSequence_main_region_Black_default();
+				if (sCInterface.masodikJon) {
+					exitSequence_main_region_elsoJatekos();
+					enterSequence_main_region_masodikJatekos_default();
 				} else {
 					if (timeEvents[1]) {
-						exitSequence_main_region_White();
-						sCInterface.setWhiteTime(sCInterface.getWhiteTime() - 1);
+						exitSequence_main_region_elsoJatekos();
+						sCInterface.setElsoJataekosIdeje(sCInterface.getElsoJataekosIdeje() - 1);
 						
-						enterSequence_main_region_White_default();
+						enterSequence_main_region_elsoJatekos_default();
 					} else {
 						did_transition = false;
 					}

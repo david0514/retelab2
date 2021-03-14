@@ -9,17 +9,17 @@ public interface IExampleStatemachine extends ITimerCallback,IStatemachine {
 	
 		public void raiseStart();
 		
-		public void raiseWhite();
+		public void raiseElsoJon();
 		
-		public void raiseBlack();
+		public void raiseMasodikJon();
 		
-		public long getWhiteTime();
+		public long getElsoJataekosIdeje();
 		
-		public void setWhiteTime(long value);
+		public void setElsoJataekosIdeje(long value);
 		
-		public long getBlackTime();
+		public long getMasoikJataekosIdeje();
 		
-		public void setBlackTime(long value);
+		public void setMasoikJataekosIdeje(long value);
 		
 	}
 	

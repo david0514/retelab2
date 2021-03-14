@@ -176,9 +176,9 @@ graph
 			LabelGraphics
 			[
 				text	"
-	name = white
+	name = elsoJon
 	static = false
-	id = example wh...
+	id = example el...
 	direction = ::in
 	"
 				fontSize	14
@@ -250,9 +250,9 @@ graph
 			LabelGraphics
 			[
 				text	"
-	name = black
+	name = masodikJon
 	static = false
-	id = example bl...
+	id = example ma...
 	direction = ::in
 	"
 				fontSize	14
@@ -324,9 +324,9 @@ graph
 			LabelGraphics
 			[
 				text	"
-	name = whiteTime
+	name = elsoJataek...
 	static = false
-	id = example wh...
+	id = example el...
 	const = false
 	readonly = false
 	"
@@ -505,9 +505,9 @@ graph
 			LabelGraphics
 			[
 				text	"
-	name = blackTime
+	name = masoikJata...
 	static = false
-	id = example bl...
+	id = example ma...
 	const = false
 	readonly = false
 	"
@@ -1020,7 +1020,7 @@ graph
 				text	"
 	specification = null
 	namespace = null
-	name = Black
+	name = masodikJat...
 	documentation = 
 	orthogonal = false
 	simple = true
@@ -1075,7 +1075,7 @@ graph
 			id	30
 			graphics
 			[
-				w	177.10000000000002
+				w	192.50000000000003
 				h	54
 				type	"rectangle"
 				fill	"#FFFFFF"
@@ -1096,7 +1096,7 @@ graph
 			LabelGraphics
 			[
 				text	"
-	specification = black
+	specification = elsoJon
 	documentation = 
 	"
 				fontSize	14
@@ -1578,7 +1578,7 @@ graph
 			id	44
 			graphics
 			[
-				w	154.0
+				w	169.4
 				h	138
 				type	"rectangle"
 				fill	"#FFFFFF"
@@ -1601,7 +1601,7 @@ graph
 				text	"
 	specification = 
 	namespace = null
-	name = White
+	name = elsoJateko...
 	documentation = 
 	orthogonal = false
 	simple = true
@@ -1656,7 +1656,7 @@ graph
 			id	46
 			graphics
 			[
-				w	177.10000000000002
+				w	215.60000000000002
 				h	54
 				type	"rectangle"
 				fill	"#FFFFFF"
@@ -1677,7 +1677,7 @@ graph
 			LabelGraphics
 			[
 				text	"
-	specification = white
+	specification = masodikJon
 	documentation = 
 	"
 				fontSize	14
@@ -3292,7 +3292,7 @@ graph
 	edge
 	[
 		source	33
-		target	7
+		target	5
 		graphics
 		[
 			fill	"#000000"
@@ -3782,7 +3782,7 @@ graph
 	edge
 	[
 		source	49
-		target	5
+		target	7
 		graphics
 		[
 			fill	"#000000"
